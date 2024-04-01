@@ -3,6 +3,7 @@ syntax = "proto3";
 package sdk;
 
 import "sdk/types.proto";
+import "common/circuit_data.proto";
 
 service Prover {
     rpc Prove(ProveRequest) returns (ProveResponse);
@@ -18,7 +19,7 @@ message ProveRequest {
 message ProveResponse {
     Err err = 1;
     string proof = 2;
-
+    common.AppCircuitInfo circuit_info = 3;
 }
 
 message Err {
@@ -28,5 +29,6 @@ message Err {
 
 enum ErrCode {
     ERROR_UNDEFINED = 0;
+    ERROR_DEFAULT = 1;
 }
 
