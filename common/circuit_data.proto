@@ -1,8 +1,6 @@
 syntax = "proto3";
 package common;
 
-option go_package = "proto/common";
-
 message ReceiptInfo {
     string transaction_hash = 1;
     repeated LogExtractInfo log_extract_infos = 2;
