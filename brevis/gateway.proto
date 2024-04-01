@@ -4,8 +4,6 @@ package brevis;
 import "common/circuit_data.proto";
 import "google/api/annotations.proto";
 
-option go_package = "proto/gateway";
-
 service Gateway {
   rpc PrepareQuery(PrepareQueryRequest) returns (PrepareQueryResponse) {
     option (google.api.http) = {
