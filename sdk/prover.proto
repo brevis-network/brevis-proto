@@ -2,8 +2,7 @@ syntax = "proto3";
 
 package sdk;
 
-option go_package = "proto/prover";
-
+import "types.proto";
 import "common/circuit_data.proto";
 
 service Prover {
@@ -11,9 +10,43 @@ service Prover {
 }
 
 message ProveRequest {
-
+    repeated IndexedReceipt receipts = 1;
+    repeated IndexedStorage storage = 2;
+    repeated IndexedTransaction transactions = 3;
+    CustomInput custom_input = 4;
 }
 
 message ProveResponse {
+    Err err = 1;
+    string proof = 2;
 
+}
+
+message Proof {
+    string proof = 1;
+    common.AppCircuitInfo circuit_info = 2;
+}
+
+message Err {
+    ErrCode code = 1;
+    string msg = 2;
+}
+
+enum ErrCode {
+    ERROR_UNDEFINED = 0;
+}
+
+message IndexedReceipt {
+    uint32 index = 1;
+    ReceiptData data = 2;
+}
+
+message IndexedStorage {
+    uint32 index = 1;
+    StorageData data = 2;
+}
+
+message IndexedTransaction {
+    uint32 index = 1;
+    TransactionData data = 2;
 }

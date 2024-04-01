@@ -4,62 +4,37 @@ package common;
 option go_package = "proto/common";
 
 message ReceiptInfo {
-  string transaction_hash = 1;
-  repeated LogExtractInfo log_extract_infos = 2;
-  uint64 blk_num = 3;
-  uint64 receipt_index = 4;
+    string transaction_hash = 1;
+    repeated LogExtractInfo log_extract_infos = 2;
+    uint64 blk_num = 3;
+    uint64 receipt_index = 4;
 }
 
 message LogExtractInfo {
-  string contract_address = 1;
-  uint64 log_index = 2;
-  string log_topic0 = 3;
-  bool value_from_topic = 4;
-  uint64 value_index = 5;
-  string value = 6;
+    string contract_address = 1;
+    uint64 log_index = 2;
+    string log_topic0 = 3;
+    bool value_from_topic = 4;
+    uint64 value_index = 5;
+    string value = 6;
 }
 
 message StorageQueryInfo {
-  string account = 1;
-  repeated string storage_keys = 2;
-  uint64 blk_num = 3;
-}
-
-message StorageInfo {
-  uint64 blk_num = 1;
-  string block_hash = 2;
-  string account = 3;
-  string slot = 4;
-  string slot_value = 5;
+    string account = 1;
+    repeated string storage_keys = 2;
+    uint64 blk_num = 3;
 }
 
 message TransactionInfo {
-  string transaction_hash = 1;
-  string leaf_hash = 2;
-  string blk_hash = 3;
-  uint64 blk_num = 4;
-  uint64 blk_time = 5;
-  string leaf_rlp_prefix = 6;
-  TransactionExtraInfo extra = 7;
-}
-
-message TransactionExtraInfo {
-  uint64 chain_id = 1;
-  uint64 nonce = 2;
-  string max_priority_gas_price = 3;
-  string gas_price_or_cap = 4;
-  uint64 gas_limit = 5;
-  string from = 6;
-  string to = 7;
-  string value = 8;
+    string transaction_hash = 1;
 }
 
 message AppCircuitInfo {
-  string output_commitment = 1;
-  string vk = 2;
-  repeated string input_commitments = 3;
-  string toggles_commitment = 4;
-  repeated bool toggles = 5;
-  bool use_callback = 6;
-  string output = 7;
+    string output_commitment = 1;
+    string vk = 2;
+    repeated string input_commitments = 3;
+    string toggles_commitment = 4;
+    repeated bool toggles = 5;
+    bool use_callback = 6;
+    string output = 7;
 }

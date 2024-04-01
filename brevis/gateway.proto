@@ -59,21 +59,6 @@ message PrepareQueryResponse {
   string fee = 3;
 }
 
-message RetrieveQueryAndProofRequest {
-  string query_hash = 1;
-  uint64 target_chain_id = 2;
-}
-
-message RetrieveQueryAndProofResponse {
-  ErrMsg err = 1;
-  repeated common.ReceiptInfo receipt_infos = 2;
-  repeated common.StorageInfo storage_infos = 3;
-  repeated common.TransactionInfo transaction_infos = 4;
-  string smt_root = 5;
-  bytes proof_with_public_inputs = 6;
-  uint64 batch_size = 7;
-}
-
 message SubmitAppCircuitProofRequest {
   string query_hash = 1;
   uint64 target_chain_id = 2;

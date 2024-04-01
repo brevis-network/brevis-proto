@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package sdk;
+
+option go_package = "proto/types";
+
+message ReceiptData {
+    uint64 block_num = 1;
+    string tx_hash = 2;
+    repeated Field fields = 3;
+}
+
+message Field {
+    string contract = 1;
+    uint32 log_index = 2;
+    string event_id = 3;
+    string value = 4;
+    bool is_topic = 5;
+    uint32 field_index = 6;
+}
+
+message StorageData {
+    uint64 block_num = 1;
+    string address = 2;
+    string slot = 3;
+    string value = 4;
+}
+
+message TransactionData {
+    string hash = 1;
+    uint64 chain_id = 2;
+    uint64 block_num = 3;
+    uint64 nonce = 4;
+    string gas_tip_cap_or_gas_price = 5;
+    string gas_fee_cap = 6;
+    uint64 gas_limit = 7;
+    string from = 8;
+    string to = 9;
+    string value = 10;
+}
+
+message CustomInput {
+    string json_bytes = 1;
+}
