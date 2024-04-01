@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package sdk;
+
+option go_package = "proto/prover";
+
+import "common/circuit_data.proto";
+
+service Prover {
+    rpc Prove(ProveRequest) returns (ProveResponse);
+}
+
+message ProveRequest {
+
+}
+
+message ProveResponse {
+
+}

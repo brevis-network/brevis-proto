@@ -1,7 +1,7 @@
 syntax = "proto3";
 package common;
 
-option go_package = "github.com/brevis-network/brevis-proto/common";
+option go_package = "proto/common";
 
 message ReceiptInfo {
   string transaction_hash = 1;

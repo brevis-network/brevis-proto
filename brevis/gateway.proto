@@ -1,12 +1,12 @@
 syntax = "proto3";
 package brevis;
 
-import "../common/common.proto";
+import "common/circuit_data.proto";
 import "google/api/annotations.proto";
 
-option go_package = "github.com/brevis-network/brevis-proto/brevis";
+option go_package = "proto/gateway";
 
-service Web {
+service Gateway {
   rpc PrepareQuery(PrepareQueryRequest) returns (PrepareQueryResponse) {
     option (google.api.http) = {
       post: "/zk/prepareQuery"
@@ -45,10 +45,10 @@ enum CheckStatus {
 
 message PrepareQueryRequest {
   uint64 chain_id = 1;
-  repeated ReceiptInfo receipt_infos = 2;
-  repeated StorageQueryInfo storage_query_infos = 3;
-  repeated TransactionInfo transaction_infos = 4;
-  AppCircuitInfo app_circuit_info = 5;
+  repeated common.ReceiptInfo receipt_infos = 2;
+  repeated common.StorageQueryInfo storage_query_infos = 3;
+  repeated common.TransactionInfo transaction_infos = 4;
+  common.AppCircuitInfo app_circuit_info = 5;
   bool use_app_circuit_info = 6;
   uint64 target_chain_id = 7;
 }
@@ -66,9 +66,9 @@ message RetrieveQueryAndProofRequest {
 
 message RetrieveQueryAndProofResponse {
   ErrMsg err = 1;
-  repeated ReceiptInfo receipt_infos = 2;
-  repeated StorageInfo storage_infos = 3;
-  repeated TransactionInfo transaction_infos = 4;
+  repeated common.ReceiptInfo receipt_infos = 2;
+  repeated common.StorageInfo storage_infos = 3;
+  repeated common.TransactionInfo transaction_infos = 4;
   string smt_root = 5;
   bytes proof_with_public_inputs = 6;
   uint64 batch_size = 7;
