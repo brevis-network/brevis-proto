@@ -1,0 +1,28 @@
+syntax = "proto3";
+package brevis;
+
+message ReceiptInfo {
+    string transaction_hash = 1;
+    repeated LogExtractInfo log_extract_infos = 2;
+    uint64 blk_num = 3;
+    uint64 receipt_index = 4;
+}
+
+message LogExtractInfo {
+    string contract_address = 1;
+    uint64 log_index = 2;
+    string log_topic0 = 3;
+    bool value_from_topic = 4;
+    uint64 value_index = 5;
+    string value = 6;
+}
+
+message StorageQueryInfo {
+    string account = 1;
+    repeated string storage_keys = 2;
+    uint64 blk_num = 3;
+}
+
+message TransactionInfo {
+    string transaction_hash = 1;
+}

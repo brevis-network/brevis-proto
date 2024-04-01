@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package sdk;
 
-option go_package = "proto/types";
+import "common/circuit_data.proto";
 
 message ReceiptData {
     uint64 block_num = 1;
@@ -41,4 +41,24 @@ message TransactionData {
 
 message CustomInput {
     string json_bytes = 1;
+}
+
+message IndexedReceipt {
+    uint32 index = 1;
+    ReceiptData data = 2;
+}
+
+message IndexedStorage {
+    uint32 index = 1;
+    StorageData data = 2;
+}
+
+message IndexedTransaction {
+    uint32 index = 1;
+    TransactionData data = 2;
+}
+
+message Proof {
+    string proof = 1;
+    common.AppCircuitInfo circuit_info = 2;
 }

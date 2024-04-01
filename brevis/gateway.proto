@@ -1,89 +1,90 @@
 syntax = "proto3";
 package brevis;
 
+import "brevis/types.proto";
 import "common/circuit_data.proto";
 import "google/api/annotations.proto";
 
 service Gateway {
-  rpc PrepareQuery(PrepareQueryRequest) returns (PrepareQueryResponse) {
-    option (google.api.http) = {
-      post: "/zk/prepareQuery"
-      body: "*"
-    };
-  }
+    rpc PrepareQuery(PrepareQueryRequest) returns (PrepareQueryResponse) {
+        option (google.api.http) = {
+            post: "/zk/prepareQuery"
+            body: "*"
+        };
+    }
 
-  rpc SubmitAppCircuitProof(SubmitAppCircuitProofRequest) returns (SubmitAppCircuitProofResponse) {
-    option (google.api.http) = {
-      post: "/zk/submitAppCircuitProof"
-      body: "*"
-    };
-  }
+    rpc SubmitAppCircuitProof(SubmitAppCircuitProofRequest) returns (SubmitAppCircuitProofResponse) {
+        option (google.api.http) = {
+            post: "/zk/submitAppCircuitProof"
+            body: "*"
+        };
+    }
 
-  rpc GetQueryStatus(GetQueryStatusRequest) returns (GetQueryStatusResponse) {
-    option (google.api.http) = {
-      get: "/zk/getQueryStatus"
-    };
-  }
+    rpc GetQueryStatus(GetQueryStatusRequest) returns (GetQueryStatusResponse) {
+        option (google.api.http) = {
+            get: "/zk/getQueryStatus"
+        };
+    }
 }
 message ErrMsg {
-  ErrCode code = 1;
-  string msg = 2;
+    ErrCode code = 1;
+    string msg = 2;
 }
 
 enum ErrCode {
-  ERROR_CODE_UNDEFINED = 0;
-  ERROR_CODE_SLOT_VALUE_PROOF_GENERATION_FAILED = 1;
-  ERROR_CODE_TRANSACTION_PROOF_GENERATION_FAILED = 2;
+    ERROR_CODE_UNDEFINED = 0;
+    ERROR_CODE_SLOT_VALUE_PROOF_GENERATION_FAILED = 1;
+    ERROR_CODE_TRANSACTION_PROOF_GENERATION_FAILED = 2;
 }
 
 enum CheckStatus {
-  IN_PROGRESS = 0;
-  COMPLETE = 1;
+    IN_PROGRESS = 0;
+    COMPLETE = 1;
 }
 
 message PrepareQueryRequest {
-  uint64 chain_id = 1;
-  repeated common.ReceiptInfo receipt_infos = 2;
-  repeated common.StorageQueryInfo storage_query_infos = 3;
-  repeated common.TransactionInfo transaction_infos = 4;
-  common.AppCircuitInfo app_circuit_info = 5;
-  bool use_app_circuit_info = 6;
-  uint64 target_chain_id = 7;
+    uint64 chain_id = 1;
+    repeated ReceiptInfo receipt_infos = 2;
+    repeated StorageQueryInfo storage_query_infos = 3;
+    repeated TransactionInfo transaction_infos = 4;
+    common.AppCircuitInfo app_circuit_info = 5;
+    bool use_app_circuit_info = 6;
+    uint64 target_chain_id = 7;
 }
 
 message PrepareQueryResponse {
-  ErrMsg err = 1;
-  string query_hash = 2;
-  string fee = 3;
+    ErrMsg err = 1;
+    string query_hash = 2;
+    string fee = 3;
 }
 
 message SubmitAppCircuitProofRequest {
-  string query_hash = 1;
-  uint64 target_chain_id = 2;
-  string proof = 3;
+    string query_hash = 1;
+    uint64 target_chain_id = 2;
+    string proof = 3;
 }
 
 message SubmitAppCircuitProofResponse {
-  ErrMsg err = 1;
-  bool success = 2;
+    ErrMsg err = 1;
+    bool success = 2;
 }
 
 message GetQueryStatusRequest {
-  string query_hash = 1;
-  uint64 target_chain_id = 2;
+    string query_hash = 1;
+    uint64 target_chain_id = 2;
 }
 
 enum QueryStatus {
-  QS_UNKNOWN = 0;
-  QS_TO_BE_PAID = 1;
-  QS_PAID = 2;
-  QS_PROOF_READY = 3;
-  QS_COMPLETE = 4;
-  QS_FAILED = 5;
+    QS_UNKNOWN = 0;
+    QS_TO_BE_PAID = 1;
+    QS_PAID = 2;
+    QS_PROOF_READY = 3;
+    QS_COMPLETE = 4;
+    QS_FAILED = 5;
 }
 
 message GetQueryStatusResponse {
-  ErrMsg err = 1;
-  QueryStatus status = 2;
-  string tx_hash = 3;
+    ErrMsg err = 1;
+    QueryStatus status = 2;
+    string tx_hash = 3;
 }

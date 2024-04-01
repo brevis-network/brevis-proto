@@ -2,8 +2,7 @@ syntax = "proto3";
 
 package sdk;
 
-import "types.proto";
-import "common/circuit_data.proto";
+import "sdk/types.proto";
 
 service Prover {
     rpc Prove(ProveRequest) returns (ProveResponse);
@@ -22,11 +21,6 @@ message ProveResponse {
 
 }
 
-message Proof {
-    string proof = 1;
-    common.AppCircuitInfo circuit_info = 2;
-}
-
 message Err {
     ErrCode code = 1;
     string msg = 2;
@@ -36,17 +30,3 @@ enum ErrCode {
     ERROR_UNDEFINED = 0;
 }
 
-message IndexedReceipt {
-    uint32 index = 1;
-    ReceiptData data = 2;
-}
-
-message IndexedStorage {
-    uint32 index = 1;
-    StorageData data = 2;
-}
-
-message IndexedTransaction {
-    uint32 index = 1;
-    TransactionData data = 2;
-}
