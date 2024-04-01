@@ -10,7 +10,7 @@ service Prover {
 
 message ProveRequest {
     repeated IndexedReceipt receipts = 1;
-    repeated IndexedStorage storage = 2;
+    repeated IndexedStorage storages = 2;
     repeated IndexedTransaction transactions = 3;
     CustomInput custom_input = 4;
 }
