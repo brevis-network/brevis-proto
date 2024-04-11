@@ -6,6 +6,7 @@ import "sdk/types.proto";
 import "common/circuit_data.proto";
 
 service Prover {
+    // Generates a proof with the given data and custom input assignments
     rpc Prove(ProveRequest) returns (ProveResponse);
 }
 

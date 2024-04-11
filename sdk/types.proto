@@ -4,38 +4,63 @@ package sdk;
 
 import "common/circuit_data.proto";
 
+// ReceiptData is a request for proof for some data under an EVM receipt
 message ReceiptData {
     uint64 block_num = 1;
+    // hex encoded tx hash
     string tx_hash = 2;
+    // must at least contain one field
     repeated Field fields = 3;
 }
 
+// Field represents a field in an EVM log that we want the validity to be proven by Brevis
 message Field {
+    // address. the contract which emitted the log
     string contract = 1;
+    // the index of the log in the transaction receipt, starting from 0.
     uint32 log_index = 2;
+    // the event id (aka topic[0]) of the log
     string event_id = 3;
+    // the value of the field we want to prove
     string value = 4;
+    // true if the field is a topic, false if the field is in log data
     bool is_topic = 5;
+    // the index of the field in the log
     uint32 field_index = 6;
 }
 
+// StorageData is a request for proof for some data in an EVM storage slot
 message StorageData {
+    // from which block to fetch the storage value
     uint64 block_num = 1;
+    // hex encoded address of the account
     string address = 2;
+    // the hex encoded "slot" of a storage.
+    // see https://docs.soliditylang.org/en/latest/internals/layout_in_storage.html
     string slot = 3;
+    // the value stored in the storage slot. decoding is based on Go's big.Int SetString.
+    // must not exceed 32 bytes
     string value = 4;
 }
 
+// TransactionData is a request for proof for some EVM transaction
+// Only transaction type 0 and 2 are supported
 message TransactionData {
+    // hex encoded tx hash
     string hash = 1;
     uint64 chain_id = 2;
     uint64 block_num = 3;
     uint64 nonce = 4;
+    // this field represents `GasPrice` for legacy tx (type 0) and `GasTipCap` for dynamic fee tx (type 2)
     string gas_tip_cap_or_gas_price = 5;
+    // this field is ignored for legacy tx (type 0) and represents `GasFeeCap` for dynamic fee tx (type 2)
     string gas_fee_cap = 6;
     uint64 gas_limit = 7;
+    // address
     string from = 8;
+    // address
     string to = 9;
+    // decoding is based on Go's big.Int SetString. must be less than uint256 max
     string value = 10;
 }
 
