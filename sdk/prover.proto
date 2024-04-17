@@ -4,10 +4,16 @@ package sdk;
 
 import "sdk/types.proto";
 import "common/circuit_data.proto";
+import "google/api/annotations.proto";
 
 service Prover {
     // Generates a proof with the given data and custom input assignments
-    rpc Prove(ProveRequest) returns (ProveResponse);
+    rpc Prove(ProveRequest) returns (ProveResponse) {
+        option (google.api.http) = {
+            post: "/sdk/prove"
+            body: "*"
+        };
+    };
 }
 
 message ProveRequest {
