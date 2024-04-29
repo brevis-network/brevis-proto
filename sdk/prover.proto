@@ -14,6 +14,19 @@ service Prover {
             body: "*"
         };
     };
+
+    rpc ProveAsync(ProveRequest) returns (ProveAsyncResponse) {
+        option (google.api.http) = {
+            post: "/sdk/prove-async"
+            body: "*"
+        };
+    }
+
+    rpc GetProof(GetProofRequest) returns (GetProofResponse) {
+        option (google.api.http) = {
+            get: "/sdk/get-proof"
+        };
+    }
 }
 
 message ProveRequest {
@@ -27,6 +40,23 @@ message ProveResponse {
     Err err = 1;
     string proof = 2;
     common.AppCircuitInfo circuit_info = 3;
+}
+
+message ProveAsyncResponse {
+    Err err = 1;
+    string proof_id = 2;
+    common.AppCircuitInfo circuit_info = 3;
+}
+
+message GetProofRequest {
+    string proof_id = 1;
+}
+
+message GetProofResponse {
+    // err can be undefined or ERROR_FAILED_TO_PROVE
+    Err err = 1;
+    // proof is an empty string until proving is finished
+    string proof = 2;
 }
 
 message Err {
