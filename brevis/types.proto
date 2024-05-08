@@ -15,6 +15,7 @@ message LogExtractInfo {
     bool value_from_topic = 4;
     uint64 value_index = 5;
     string value = 6;
+    uint64 topics_length = 7; // How many topics exists in this log
 }
 
 message StorageQueryInfo {
