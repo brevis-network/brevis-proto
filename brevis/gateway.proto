@@ -48,6 +48,11 @@ enum CheckStatus {
     COMPLETE = 1;
 }
 
+enum QueryOption {
+    ZK_MODE = 0;
+    OP_MODE = 1;
+}
+
 message PrepareQueryRequest {
     uint64 chain_id = 1;
     repeated ReceiptInfo receipt_infos = 2;
@@ -56,6 +61,7 @@ message PrepareQueryRequest {
     common.AppCircuitInfo app_circuit_info = 5;
     bool use_app_circuit_info = 6;
     uint64 target_chain_id = 7;
+    QueryOption option = 8;
 }
 
 message PrepareQueryResponse {
@@ -87,6 +93,18 @@ enum QueryStatus {
     QS_PROOF_READY = 3;
     QS_COMPLETE = 4;
     QS_FAILED = 5;
+    QS_OP_MESSAGE_PENDING = 6;
+    QS_OP_MESSAGE_READY = 7;
+    QS_OP_SUBMITTED = 8;
+    QS_OP_MESSAGE_SUBMISSION_FAILED = 9;
+    QS_OP_DISPUTING = 10;
+    QS_OP_ASK_FOR_QUERY_DATA = 11;
+    QS_OP_QUERY_DATA_SUBMITTED = 12;
+    QS_OP_QUERY_DATA_POST_FAILED = 13;
+    QS_OP_ASK_FOR_QUERY_PROOF = 14;
+    QS_OP_DISPUTED = 15;
+    QS_OP_ATTESTED = 16;
+    QS_REFUNDED = 17;
 }
 
 message GetQueryStatusResponse {
