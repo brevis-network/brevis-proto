@@ -31,6 +31,12 @@ service Gateway {
             get: "/zk/getQueryInfoForOP"
         };
     }
+
+    rpc GetSingleRunParams(GetSingleRunParamsRequest) returns (GetSingleRunParamsResponse) {
+        option (google.api.http) = {
+            get: "/zk/getSingleRunParams"
+        };
+    }
 }
 message ErrMsg {
     ErrCode code = 1;
@@ -121,4 +127,27 @@ message GetQueryInfoForOPRequest {
 message GetQueryInfoForOPResponse {
     ErrMsg err = 1;
     bytes query_info = 2;
+}
+
+message GetSingleRunParamsRequest {
+    string query_hash = 1;
+    uint64 target_chain_id = 2;
+}
+
+message GetSingleRunParamsResponse {
+    ErrMsg err = 1;
+    uint64 src_chain_id = 2;
+    ProofData proof_data = 3;
+    bytes merkle_root = 4;
+    repeated bytes merkle_proof = 5;
+    uint64 node_index = 6;
+    bytes app_circuit_output = 7;
+}
+
+message ProofData {
+    bytes commit_hash = 1;
+    bytes vk_hash = 2;
+    bytes app_commit_hash = 3;
+    bytes app_vk_hash = 4;
+    bytes smt_root = 5;
 }
