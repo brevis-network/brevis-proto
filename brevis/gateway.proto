@@ -138,16 +138,16 @@ message GetSingleRunParamsResponse {
     ErrMsg err = 1;
     uint64 src_chain_id = 2;
     ProofData proof_data = 3;
-    bytes merkle_root = 4;
-    repeated bytes merkle_proof = 5;
+    string merkle_root = 4;
+    repeated string merkle_proof = 5;
     uint64 node_index = 6;
-    bytes app_circuit_output = 7;
+    string app_circuit_output = 7;
 }
 
 message ProofData {
-    bytes commit_hash = 1;
-    bytes vk_hash = 2;
-    bytes app_commit_hash = 3;
-    bytes app_vk_hash = 4;
-    bytes smt_root = 5;
+    string commit_hash = 1;
+    string vk_hash = 2;
+    string app_commit_hash = 3;
+    string app_vk_hash = 4;
+    string smt_root = 5;
 }
