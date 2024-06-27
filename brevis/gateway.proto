@@ -74,12 +74,14 @@ message PrepareQueryResponse {
     ErrMsg err = 1;
     string query_hash = 2;
     string fee = 3;
+    uint64 nonce = 4;
 }
 
 message SubmitAppCircuitProofRequest {
     string query_hash = 1;
     uint64 target_chain_id = 2;
     string proof = 3;
+    uint64 nonce = 4;
 }
 
 message SubmitAppCircuitProofResponse {
@@ -90,6 +92,7 @@ message SubmitAppCircuitProofResponse {
 message GetQueryStatusRequest {
     string query_hash = 1;
     uint64 target_chain_id = 2;
+    uint64 nonce = 3;
 }
 
 enum QueryStatus {
@@ -132,6 +135,7 @@ message GetQueryInfoForOPResponse {
 message GetSingleRunParamsRequest {
     string query_hash = 1;
     uint64 target_chain_id = 2;
+    uint64 nonce = 3;
 }
 
 message GetSingleRunParamsResponse {
