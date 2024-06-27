@@ -37,6 +37,13 @@ service Gateway {
             get: "/zk/getSingleRunParams"
         };
     }
+
+    rpc SendBatchQueries(SendBatchQueriesRequest) returns (SendBatchQueriesResponse) {
+        option (google.api.http) = {
+            post: "/zk/sendBatchQueries"
+            body: "*"
+        };
+    }
 }
 message ErrMsg {
     ErrCode code = 1;
@@ -65,23 +72,20 @@ message PrepareQueryRequest {
     repeated StorageQueryInfo storage_query_infos = 3;
     repeated TransactionInfo transaction_infos = 4;
     common.AppCircuitInfo app_circuit_info = 5;
-    bool use_app_circuit_info = 6;
-    uint64 target_chain_id = 7;
-    QueryOption option = 8;
+    uint64 target_chain_id = 6;
+    QueryOption option = 7;
 }
 
 message PrepareQueryResponse {
     ErrMsg err = 1;
-    string query_hash = 2;
+    QueryKey query_key = 2;
     string fee = 3;
-    uint64 nonce = 4;
 }
 
 message SubmitAppCircuitProofRequest {
-    string query_hash = 1;
+    QueryKey query_key = 1;
     uint64 target_chain_id = 2;
     string proof = 3;
-    uint64 nonce = 4;
 }
 
 message SubmitAppCircuitProofResponse {
@@ -90,9 +94,8 @@ message SubmitAppCircuitProofResponse {
 }
 
 message GetQueryStatusRequest {
-    string query_hash = 1;
+    QueryKey query_key = 1;
     uint64 target_chain_id = 2;
-    uint64 nonce = 3;
 }
 
 enum QueryStatus {
@@ -133,9 +136,8 @@ message GetQueryInfoForOPResponse {
 }
 
 message GetSingleRunParamsRequest {
-    string query_hash = 1;
+    QueryKey query_key = 1;
     uint64 target_chain_id = 2;
-    uint64 nonce = 3;
 }
 
 message GetSingleRunParamsResponse {
@@ -154,4 +156,31 @@ message ProofData {
     string app_commit_hash = 3;
     string app_vk_hash = 4;
     string smt_root = 5;
+}
+
+message SendBatchQueriesRequest {
+    uint64 chain_id = 1;
+    repeated Query queries = 2;
+    uint64 target_chain_id = 3;
+    QueryOption option = 4;
+    map<string, string> vkhash_to_vk = 5;
+    string api_key = 6; // authentication
+}
+
+message Query {
+    repeated ReceiptInfo receipt_infos = 1;
+    repeated StorageQueryInfo storage_query_infos = 2;
+    repeated TransactionInfo transaction_infos = 3;
+    common.AppCirucitInfoWithProof app_circuit_info = 4;
+}
+
+message SendBatchQueriesResponse {
+    ErrMsg err = 1;
+    repeated QueryKey query_keys = 2;
+    string fee = 3;
+}
+
+message QueryKey {
+    string query_hash = 1;
+    uint64 nonce = 2;
 }
