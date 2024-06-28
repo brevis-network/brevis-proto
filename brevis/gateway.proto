@@ -163,8 +163,7 @@ message SendBatchQueriesRequest {
     repeated Query queries = 2;
     uint64 target_chain_id = 3;
     QueryOption option = 4;
-    map<string, string> vkhash_to_vk = 5;
-    string api_key = 6; // authentication
+    string api_key = 5; // authentication
 }
 
 message Query {
