@@ -9,6 +9,7 @@ message AppCircuitInfo {
     repeated bool toggles = 5;
     bool use_callback = 6;
     string output = 7;
+    string vk_hash = 8;
 }
 
 message AppCirucitInfoWithProof {
