@@ -74,6 +74,7 @@ message PrepareQueryRequest {
     common.AppCircuitInfo app_circuit_info = 5;
     uint64 target_chain_id = 6;
     QueryOption option = 7;
+    bool use_plonky2 = 8;
 }
 
 message PrepareQueryResponse {
@@ -171,6 +172,7 @@ message Query {
     repeated StorageQueryInfo storage_query_infos = 2;
     repeated TransactionInfo transaction_infos = 3;
     common.AppCirucitInfoWithProof app_circuit_info = 4;
+    bool use_plonky2 = 5;
 }
 
 message SendBatchQueriesResponse {
