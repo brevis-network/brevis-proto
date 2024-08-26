@@ -171,7 +171,7 @@ message Query {
     repeated ReceiptInfo receipt_infos = 1;
     repeated StorageQueryInfo storage_query_infos = 2;
     repeated TransactionInfo transaction_infos = 3;
-    common.AppCirucitInfoWithProof app_circuit_info = 4;
+    common.AppCircuitInfoWithProof app_circuit_info = 4;
     bool use_plonky2 = 5;
 }
 

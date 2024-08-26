@@ -10,9 +10,10 @@ message AppCircuitInfo {
     bool use_callback = 6;
     string output = 7;
     string vk_hash = 8;
+    string input_commitments_root = 9;
 }
 
-message AppCirucitInfoWithProof {
+message AppCircuitInfoWithProof {
     string output_commitment = 1;
     string vk_hash = 2;
     repeated string input_commitments = 3;
@@ -21,4 +22,5 @@ message AppCirucitInfoWithProof {
     string output = 6;
     string proof = 7;
     string callback_addr = 8;
+    string input_commitments_root = 9;
 }
