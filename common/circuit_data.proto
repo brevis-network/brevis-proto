@@ -11,6 +11,7 @@ message AppCircuitInfo {
     string output = 7;
     string vk_hash = 8;
     string input_commitments_root = 9;
+    string witness = 10;
 }
 
 message AppCircuitInfoWithProof {
@@ -23,4 +24,5 @@ message AppCircuitInfoWithProof {
     string proof = 7;
     string callback_addr = 8;
     string input_commitments_root = 9;
+    string witness = 10;
 }
