@@ -34,6 +34,7 @@ message ProveRequest {
     repeated IndexedStorage storages = 2;
     repeated IndexedTransaction transactions = 3;
     CustomInput custom_input = 4;
+    uint64 src_chain_id = 5;
 }
 
 message ProveResponse {
