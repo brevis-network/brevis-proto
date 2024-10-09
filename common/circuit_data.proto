@@ -5,24 +5,30 @@ message AppCircuitInfo {
     string output_commitment = 1;
     string vk = 2;
     repeated string input_commitments = 3;
-    string toggles_commitment = 4;
+    string toggles_commitment = 4 [deprecated = true];
     repeated bool toggles = 5;
     bool use_callback = 6;
     string output = 7;
     string vk_hash = 8;
     string input_commitments_root = 9;
     string witness = 10;
+    uint32 max_receipts = 11;
+    uint32 max_storage = 12;
+    uint32 max_tx = 13;
 }
 
 message AppCircuitInfoWithProof {
     string output_commitment = 1;
     string vk_hash = 2;
     repeated string input_commitments = 3;
-    string toggles_commitment = 4;
+    string toggles_commitment = 4 [deprecated = true];
     repeated bool toggles = 5;
     string output = 6;
     string proof = 7;
     string callback_addr = 8;
     string input_commitments_root = 9;
     string witness = 10;
+    uint32 max_receipts = 11;
+    uint32 max_storage = 12;
+    uint32 max_tx = 13;
 }
