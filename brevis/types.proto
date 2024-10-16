@@ -10,7 +10,7 @@ message ReceiptInfo {
 
 message LogExtractInfo {
     string contract_address = 1;
-    uint64 log_index = 2;
+    uint64 log_pos = 2;
     string log_topic0 = 3;
     bool value_from_topic = 4;
     uint64 value_index = 5;

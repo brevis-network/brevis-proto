@@ -18,7 +18,7 @@ message Field {
     // address. the contract which emitted the log
     string contract = 1;
     // the index of the log in the transaction receipt, starting from 0.
-    uint32 log_index = 2;
+    uint32 log_pos = 2;
     // the event id (aka topic[0]) of the log
     string event_id = 3;
     // the value of the field we want to prove
