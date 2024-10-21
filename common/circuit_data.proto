@@ -15,7 +15,7 @@ message AppCircuitInfo {
     uint32 max_receipts = 11;
     uint32 max_storage = 12;
     uint32 max_tx = 13;
-    string circuit_digest = 14;
+    uint32 max_num_data_points = 14;
 }
 
 message AppCircuitInfoWithProof {
@@ -32,5 +32,5 @@ message AppCircuitInfoWithProof {
     uint32 max_receipts = 11;
     uint32 max_storage = 12;
     uint32 max_tx = 13;
-    string circuit_digest = 14;
+    uint32 max_num_data_points = 14;
 }
