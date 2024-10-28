@@ -124,7 +124,9 @@ message GetQueryStatusResponse {
     ErrMsg err = 1;
     QueryStatus status = 2;
     string tx_hash = 3;
-    string calldata = 4;
+    string proof = 4;
+    ProofData proof_data = 5;
+    string circuit_output = 6;
 }
 
 message GetQueryInfoForOPRequest {
@@ -154,10 +156,11 @@ message GetSingleRunParamsResponse {
 
 message ProofData {
     string commit_hash = 1;
-    string vk_hash = 2;
+    string vk_hash = 2 [deprecated = true]; 
     string app_commit_hash = 3;
     string app_vk_hash = 4;
     string smt_root = 5;
+    string dummy_input_commitment = 6;
 }
 
 message SendBatchQueriesRequest {
