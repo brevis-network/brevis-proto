@@ -50,6 +50,13 @@ service Gateway {
             get: "/zk/getCircuitDigest"
         };
     }
+
+    rpc GetCircuitDummyInputRequest(CircuitDummyInputRequest) returns (CircuitDummyInputResponse) {
+        option (google.api.http) = {
+            get: "/zk/getCircuitDummyInput"
+        };
+    }
+    
 }
 message ErrMsg {
     ErrCode code = 1;
@@ -201,4 +208,15 @@ message CircuitDigestRequest{}
 message CircuitDigestResponse{
     ErrMsg err = 1;
     repeated uint64 hashes_limbs = 2;
+}
+
+message CircuitDummyInputRequest{
+    uint64 chain_id = 1;
+}
+
+message CircuitDummyInputResponse{
+    ErrMsg err = 1;
+    string receipt = 2;
+    string storage = 3;
+    string tx = 4;
 }
