@@ -140,6 +140,7 @@ message GetQueryStatusResponse {
     string proof = 4;
     ProofData proof_data = 5;
     string circuit_output = 6;
+    string proof_with_public_inputs = 7;
 }
 
 message GetQueryInfoForOPRequest {
