@@ -27,6 +27,13 @@ service Prover {
             get: "/sdk/get-proof"
         };
     }
+
+    rpc DeleteProof(DeleteProofRequest) returns (DeleteProofResponse) {
+        option (google.api.http) = {
+            post: "/sdk/delete-proof"
+            body: "*"
+        };
+    }
 }
 
 message ProveRequest {
@@ -60,6 +67,14 @@ message GetProofResponse {
     string proof = 2;
 }
 
+message DeleteProofRequest {
+    string proof_id = 1;
+}
+
+message DeleteProofResponse {
+    Err err = 1;
+}
+
 message Err {
     ErrCode code = 1;
     string msg = 2;
@@ -72,4 +87,3 @@ enum ErrCode {
     ERROR_INVALID_CUSTOM_INPUT = 3;
     ERROR_FAILED_TO_PROVE = 4;
 }
-
