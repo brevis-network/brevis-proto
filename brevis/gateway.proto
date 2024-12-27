@@ -56,6 +56,13 @@ service Gateway {
             get: "/zk/getCircuitDummyInput"
         };
     }
+
+    rpc SubmitVK(SubmitVKRequest) returns (SubmitVKResponse) {
+        option (google.api.http) = {
+            post: "/zk/submitVK"
+            body: "*"
+        };
+    }
     
 }
 message ErrMsg {
@@ -220,4 +227,13 @@ message CircuitDummyInputResponse{
     string receipt = 2;
     string storage = 3;
     string tx = 4;
+}
+
+message SubmitVKRequest {
+    string vk_hash = 1;
+    string vk_raw = 2;
+}
+
+message SubmitVKResponse {
+    ErrMsg err = 1;
 }
