@@ -45,6 +45,19 @@ service Gateway {
         };
     }
 
+    rpc SendBatchQueriesAsync(SendBatchQueriesRequest) returns (SendBatchQueriesAsyncResponse) {
+        option (google.api.http) = {
+            post: "/zk/sendBatchQueriesAsync"
+            body: "*"
+        };
+    }
+
+    rpc GetQueryKeysByReqIds(GetQueryKeysByReqIdsRequest) returns (GetQueryKeysByReqIdsResponse) {
+        option (google.api.http) = {
+            get: "/zk/getQueryKeysByReqIds"
+        };
+    }
+
     rpc GetCircuitDigest(CircuitDigestRequest) returns (CircuitDigestResponse) {
         option (google.api.http) = {
             get: "/zk/getCircuitDigest"
@@ -209,6 +222,20 @@ message SendBatchQueriesResponse {
 message QueryKey {
     string query_hash = 1;
     uint64 nonce = 2;
+}
+
+message SendBatchQueriesAsyncResponse {
+    ErrMsg err = 1;
+    repeated string req_ids = 2;
+}
+
+message GetQueryKeysByReqIdsRequest {
+    repeated string req_ids = 1;
+}
+
+message GetQueryKeysByReqIdsResponse {
+    ErrMsg err = 1;
+    repeated QueryKey query_keys = 2;
 }
 
 message CircuitDigestRequest{}
