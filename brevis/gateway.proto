@@ -52,9 +52,9 @@ service Gateway {
         };
     }
 
-    rpc GetQueryKeysByReqIds(GetQueryKeysByReqIdsRequest) returns (GetQueryKeysByReqIdsResponse) {
+    rpc GetQueryKeysByBatchId(GetQueryKeysByBatchIdRequest) returns (GetQueryKeysByBatchIdResponse) {
         option (google.api.http) = {
-            get: "/zk/getQueryKeysByReqIds"
+            get: "/zk/getQueryKeysByBatchId"
         };
     }
 
@@ -226,14 +226,14 @@ message QueryKey {
 
 message SendBatchQueriesAsyncResponse {
     ErrMsg err = 1;
-    repeated string req_ids = 2;
+    string batch_id = 2;
 }
 
-message GetQueryKeysByReqIdsRequest {
-    repeated string req_ids = 1;
+message GetQueryKeysByBatchIdRequest {
+    string batch_id = 1;
 }
 
-message GetQueryKeysByReqIdsResponse {
+message GetQueryKeysByBatchIdResponse {
     ErrMsg err = 1;
     repeated QueryKey query_keys = 2;
 }
