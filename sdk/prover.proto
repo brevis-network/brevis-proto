@@ -53,6 +53,8 @@ message ProveResponse {
 message ProveAsyncResponse {
     Err err = 1;
     string proof_id = 2;
+    // circuit_info is the partial circuit info to submit to Brevis gateway
+    // and trigger the data proof process
     common.AppCircuitInfo circuit_info = 3;
 }
 
@@ -65,6 +67,8 @@ message GetProofResponse {
     Err err = 1;
     // proof is an empty string until proving is finished
     string proof = 2;
+    // circuit_info to submit to Brevis gateway along with the app proof
+    common.AppCircuitInfo circuit_info = 3;
 }
 
 message DeleteProofRequest {
