@@ -120,6 +120,7 @@ message SubmitAppCircuitProofRequest {
     QueryKey query_key = 1;
     uint64 target_chain_id = 2;
     string proof = 3;
+    common.AppCircuitInfo app_circuit_info = 4;
 }
 
 message SubmitAppCircuitProofResponse {
