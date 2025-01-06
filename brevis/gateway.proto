@@ -227,6 +227,7 @@ message QueryKey {
 message SendBatchQueriesAsyncResponse {
     ErrMsg err = 1;
     string batch_id = 2;
+    repeated string request_ids = 3;
 }
 
 message GetQueryKeysByBatchIdRequest {
