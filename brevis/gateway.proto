@@ -246,6 +246,7 @@ message CircuitDigestRequest{}
 message CircuitDigestResponse{
     ErrMsg err = 1;
     repeated uint64 hashes_limbs = 2;
+    repeated string gnark_vks = 3;
 }
 
 message CircuitDummyInputRequest{
