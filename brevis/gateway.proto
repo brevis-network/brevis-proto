@@ -108,6 +108,8 @@ message PrepareQueryRequest {
     uint64 target_chain_id = 6;
     QueryOption option = 7;
     bool use_plonky2 = 8 [deprecated = true]; 
+    bool use_vm = 9;
+    string vm_app_circuit_proof = 10;
 }
 
 message PrepareQueryResponse {
@@ -204,6 +206,7 @@ message SendBatchQueriesRequest {
     uint64 target_chain_id = 3;
     QueryOption option = 4;
     string api_key = 5; // authentication
+    bool use_vm = 6;
 }
 
 message Query {
