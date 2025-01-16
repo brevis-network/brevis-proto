@@ -215,6 +215,7 @@ message Query {
     repeated TransactionInfo transaction_infos = 3;
     common.AppCircuitInfoWithProof app_circuit_info = 4;
     bool use_plonky2 = 5 [deprecated = true];
+    common.VmAppCircuitInfo vm_app_circuit_info = 6;
 }
 
 message SendBatchQueriesResponse {
