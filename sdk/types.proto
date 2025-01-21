@@ -11,6 +11,8 @@ message ReceiptData {
     string tx_hash = 2;
     // must at least contain one field
     repeated Field fields = 3;
+
+    string receipt_data_json_hex = 4;
 }
 
 // Field represents a field in an EVM log that we want the validity to be proven by Brevis
@@ -41,6 +43,8 @@ message StorageData {
     // the value stored in the storage slot. decoding is based on Go's big.Int SetString.
     // must not exceed 32 bytes
     string value = 4;
+
+    string storage_data_json_hex = 5;
 }
 
 // TransactionData is a request for proof for some EVM transaction
@@ -62,6 +66,8 @@ message TransactionData {
     string to = 9;
     // decoding is based on Go's big.Int SetString. must be less than uint256 max
     string value = 10;
+
+    string transaction_data_json_hex = 11;
 }
 
 message CustomInput {
