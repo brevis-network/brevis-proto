@@ -267,6 +267,7 @@ message CircuitDummyInputResponse{
 message SubmitVKRequest {
     string vk_hash = 1;
     string vk_raw = 2;
+    uint64 chain_id = 3;
 }
 
 message SubmitVKResponse {
