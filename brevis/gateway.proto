@@ -123,6 +123,7 @@ message SubmitAppCircuitProofRequest {
     uint64 target_chain_id = 2;
     string proof = 3;
     common.AppCircuitInfoWithProof app_circuit_info = 4;
+    common.VmAppCircuitInfo vm_app_circuit_info = 5;
 }
 
 message SubmitAppCircuitProofResponse {
