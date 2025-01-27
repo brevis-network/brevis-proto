@@ -109,7 +109,7 @@ message PrepareQueryRequest {
     QueryOption option = 7;
     bool use_plonky2 = 8 [deprecated = true]; 
     bool use_vm = 9;
-    string vm_app_circuit_proof = 10;
+    common.VmAppCircuitInfo vm_app_circuit_info = 10;
 }
 
 message PrepareQueryResponse {
