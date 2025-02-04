@@ -41,8 +41,7 @@ message VmAppCircuitInfo {
     uint32 max_tx = 3;
     uint32 max_num_data_points = 4;
 
-    string output = 5; // abi encode of the output struct of vm. example: abi.encode(struct{sum, avg})
-    string constraint_json = 6; // for agg prover, gateway do not use it.
-    string proof_with_public_values_json = 7; // for agg prover, gateway do not use it.
+    string public_values = 5;
+    string witness_json_hex = 6;
 }
 
