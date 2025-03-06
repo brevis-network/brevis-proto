@@ -270,6 +270,7 @@ message SubmitVKRequest {
     string vk_raw = 2;
     uint64 chain_id = 3;
     uint64 target_chain_id = 4;
+    string api_key = 5; // authentication
 }
 
 message SubmitVKResponse {
